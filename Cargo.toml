@@ -1,0 +1,36 @@
+[package]
+name = "web-scaffold"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+serde = { version = "1.0.219", features = ["derive"] }
+serde_json = "1.0.140"
+anyhow = "1.0.98"
+async-trait = { version = "0.1.88" }
+log = "0.4.27"
+dotenv = "0.15.0"
+config = "0.15.11"
+log4rs = "1.3.0"
+chrono = { version = "0.4.41", features = ["serde"] }
+futures = "0.3.31"
+uuid = { version = "1.17.0", features = ["v4"] }
+thiserror = "2.0.12"
+# http
+axum = { version = "0.8.4", optional = true }
+tokio = { version = "1.45.1", features = ["full"], optional = true }
+tower-http = { version = "0.6.6", features = ["cors", "request-id", "trace", "propagate-header", "timeout"], optional = true }
+tower = { version = "0.5.2", optional = true }
+# sea_orm_mysql
+sea-orm = { version = "1.1.12", features = ["sqlx-mysql", "runtime-tokio-rustls", "macros", "debug-print"], optional = true }
+# diesel_mysql
+diesel = { version = "2.2.10", features = ["mysql", "r2d2", "chrono"], optional = true }
+mysqlclient-sys = { version = "0.4.5", features = ["bundled"], optional = true }
+# redis
+redis = { version = "0.32.0", features = ["aio", "connection-manager", "tokio-comp"], optional = true }
+
+[features]
+http = ["dep:axum", "dep:tokio", "dep:tower-http", "dep:tower", "dep:tower"]
+sea_orm_mysql = ["dep:sea-orm"]
+diesel_mysql = ["dep:diesel", "dep:mysqlclient-sys"]
+rds = ["dep:redis"]
