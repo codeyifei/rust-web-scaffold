@@ -21,16 +21,14 @@ axum = { version = "0.8.4", optional = true }
 tokio = { version = "1.45.1", features = ["full"], optional = true }
 tower-http = { version = "0.6.6", features = ["cors", "request-id", "trace", "propagate-header", "timeout"], optional = true }
 tower = { version = "0.5.2", optional = true }
-# sea_orm_mysql
-sea-orm = { version = "1.1.12", features = ["sqlx-mysql", "runtime-tokio-rustls", "macros", "debug-print"], optional = true }
-# diesel_mysql
-diesel = { version = "2.2.10", features = ["mysql", "r2d2", "chrono"], optional = true }
-mysqlclient-sys = { version = "0.4.5", features = ["bundled"], optional = true }
+# mysql
+diesel = { version = "2.2.11", optional = true }
+diesel-async = { version = "0.5.2", features = ["deadpool", "mysql"], optional = true }
+deadpool = { version = "0.12.2", features = ["managed"], optional = true }
 # redis
 redis = { version = "0.32.0", features = ["aio", "connection-manager", "tokio-comp"], optional = true }
 
 [features]
 http = ["dep:axum", "dep:tokio", "dep:tower-http", "dep:tower", "dep:tower"]
-sea_orm_mysql = ["dep:sea-orm"]
-diesel_mysql = ["dep:diesel", "dep:mysqlclient-sys"]
+mysql = ["dep:diesel", "dep:diesel-async", "dep:deadpool"]
 rds = ["dep:redis"]
