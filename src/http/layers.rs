@@ -25,14 +25,13 @@ type DefaultRequestIdLayer = ServiceBuilder<
     >,
 >;
 pub fn default_request_id_layer() -> DefaultRequestIdLayer {
-    let layer = ServiceBuilder::new()
+    ServiceBuilder::new()
         .layer(SetRequestIdLayer::new(
             X_REQUEST_ID.clone(),
             UuidRequestIdGenerator::default(),
         ))
         .layer(PropagateRequestIdLayer::new(X_REQUEST_ID.clone()))
-        .layer(PropagateHeaderLayer::new(X_REQUEST_ID.clone()));
-    layer
+        .layer(PropagateHeaderLayer::new(X_REQUEST_ID.clone()))
 }
 
 pub fn default_cors_layer() -> CorsLayer {

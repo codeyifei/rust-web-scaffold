@@ -1,0 +1,5 @@
+[db]
+addr = "mysql://root:Abc.123456@127.0.0.1:3306/axum-demo"
+
+[rds]
+addr = "redis://:Abc.123456@127.0.0.1:6379/10"

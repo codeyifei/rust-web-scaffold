@@ -5,7 +5,7 @@ use redis::aio::ConnectionManager as RedisConnectionManager;
 use redis::Client;
 use serde::Deserialize;
 
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Deserialize, Default)]
 pub struct Config {
     pub addr: String,
 }
