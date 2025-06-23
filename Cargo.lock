@@ -2355,19 +2355,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "web-demo"
-version = "0.1.0"
-dependencies = [
- "async-trait",
- "axum",
- "log",
- "redis",
- "serde",
- "tokio",
- "web-scaffold",
-]
-
-[[package]]
 name = "web-scaffold"
 version = "0.1.0"
 dependencies = [
